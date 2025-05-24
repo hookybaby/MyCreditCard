@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22500" systemVersion="23E214" minimumToolsVersion="100" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+
+    <!-- Card Entity (Abstract) -->
+    <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class" isAbstract="YES">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="issuer" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="lastFourDigits" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="customColorHex" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="customIconName" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="cardType" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO" defaultValueString="now()"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Transaction" inverseName="card" inverseEntity="Transaction"/>
+    </entity>
+
+    <!-- CreditCard Entity -->
+    <entity name="CreditCard" representedClassName="CreditCard" syncable="YES" codeGenerationType="class" parentEntity="Card">
+        <attribute name="totalCreditLimit" optional="NO" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="usedCreditLimit" optional="NO" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="statementDayOfMonth" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="paymentDueDayOfMonth" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="gracePeriodDays" optional="NO" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="annualFeeAmount" optional="NO" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="annualFeeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rewardsPointsBalance" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rewardsPointsExpiry" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="billingCycles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="BillingCycle" inverseName="creditCard" inverseEntity="BillingCycle"/>
+    </entity>
+
+    <!-- DebitCard Entity -->
+    <entity name="DebitCard" representedClassName="DebitCard" syncable="YES" codeGenerationType="class" parentEntity="Card">
+        <attribute name="balance" optional="NO" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="currencyCode" optional="YES" attributeType="String" defaultValueString="USD" usesScalarValueType="NO"/>
+    </entity>
+
+    <!-- Transaction Entity -->
+    <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="amount" optional="NO" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO" defaultValueString="now()"/>
+        <attribute name="category" optional="NO" attributeType="String" defaultValueString="General" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="isExpense" optional="NO" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="merchantName" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+        <relationship name="card" optional="NO" toMany="NO" deletionRule="Nullify" destinationEntity="Card" inverseName="transactions" inverseEntity="Card"/>
+        <relationship name="billingCycle" optional="YES" toMany="NO" deletionRule="Nullify" destinationEntity="BillingCycle" inverseName="transactions" inverseEntity="BillingCycle"/>
+    </entity>
+
+    <!-- BillingCycle Entity -->
+    <entity name="BillingCycle" representedClassName="BillingCycle" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="statementBalance" optional="NO" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minimumPaymentDue" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="paymentDueDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isPaid" optional="NO" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="creditCard" optional="NO" toMany="NO" deletionRule="Nullify" destinationEntity="CreditCard" inverseName="billingCycles" inverseEntity="CreditCard"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="billingCycle" inverseEntity="Transaction"/>
+    </entity>
+</model>
