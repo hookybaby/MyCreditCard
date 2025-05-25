@@ -102,11 +102,16 @@
 			};
 			buildConfigurationList = 27A4D8DA2C0A00A800E8A1E0 /* Build configuration list for PBXProject "MyCreditCard" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = en; // Ensure this is 'en'
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				en, // English (Development Language)
+				"zh-Hans", // Chinese (Simplified)
+				fr, // French
+				de, // German
+				es, // Spanish
+				ja, // Japanese
+				Base, // Base should ideally be linked to 'en' or removed if 'en' is the dev language. Keeping it for now.
 			);
 			mainGroup = 27A4D8E12C0A00A800E8A1E0;
 			productRefGroup = 27A4D8F22C0A00A800E8A1E0 /* Products */;

@@ -1,0 +1,100 @@
+/* No localized strings yet */
+
+/* ContentView */
+"contentView.navigationTitle" = "[JA] Account Overview";
+"contentView.myCards.header" = "[JA] My Cards";
+"contentView.myCards.emptyState" = "[JA] No cards added yet. Tap the + button to add your first card!";
+"contentView.monthlySnapshot.header" = "[JA] Monthly Snapshot";
+"contentView.monthlySnapshot.creditUsage.title" = "[JA] Credit Card Usage";
+"contentView.monthlySnapshot.creditUsage.format" = "[JA] %.0f%% of $%.2f limit used"; /* Format: percentage, limit */
+"contentView.monthlySnapshot.debitSpending.title" = "[JA] Debit Card Spending";
+"contentView.monthlySnapshot.debitSpending.totalFormat" = "[JA] Total this month: $%.2f"; /* Format: total amount */
+"contentView.monthlySnapshot.debitSpending.groceriesPlaceholder" = "[JA] Groceries: $123.45";
+"contentView.monthlySnapshot.debitSpending.utilitiesPlaceholder" = "[JA] Utilities: $88.00";
+"contentView.monthlySnapshot.debitSpending.entertainmentPlaceholder" = "[JA] Entertainment: $55.20";
+"contentView.buttons.addNewCard.accessibilityLabel" = "[JA] Add New Card";
+
+/* CardView */
+"cardView.defaultName" = "[JA] Unnamed Card";
+"cardView.defaultLastFour" = "[JA] ----";
+"cardView.defaultType" = "[JA] Unknown Type";
+
+/* AddCardView */
+"addCardView.navigationTitle" = "[JA] Add New Card";
+"addCardView.section.cardDetails" = "[JA] Card Details";
+"addCardView.picker.cardType.label" = "[JA] Card Type";
+"addCardView.picker.cardType.option.credit" = "[JA] Credit Card";
+"addCardView.picker.cardType.option.debit" = "[JA] Debit Card";
+"addCardView.textField.cardName.placeholder" = "[JA] Card Name (e.g., My Visa Gold)";
+"addCardView.textField.issuer.placeholder" = "[JA] Issuer (e.g., Chase, Bank of America)";
+"addCardView.textField.lastFour.placeholder" = "[JA] Last Four Digits (e.g., 1234)";
+"addCardView.datePicker.expiryDate.label" = "[JA] Expiry Date";
+"addCardView.textField.customColorHex.placeholder" = "[JA] Custom Color Hex (optional, e.g., #FFFFFF)";
+"addCardView.section.creditCardSpecifics" = "[JA] Credit Card Specifics";
+"addCardView.textField.totalCreditLimit.placeholder" = "[JA] Total Credit Limit";
+"addCardView.textField.statementDay.placeholder" = "[JA] Statement Day of Month (1-31)";
+"addCardView.textField.paymentDueDay.placeholder" = "[JA] Payment Due Day of Month (1-31)";
+"addCardView.textField.gracePeriod.placeholder" = "[JA] Grace Period Days (optional)";
+"addCardView.textField.annualFeeAmount.placeholder" = "[JA] Annual Fee Amount (optional)";
+"addCardView.toggle.setAnnualFeeDate.label" = "[JA] Set Next Annual Fee Date?";
+"addCardView.datePicker.annualFeeDate.label" = "[JA] Next Annual Fee Date";
+"addCardView.section.debitCardSpecifics" = "[JA] Debit Card Specifics";
+"addCardView.textField.currentBalance.placeholder" = "[JA] Current Balance";
+"addCardView.textField.currencyCode.placeholder" = "[JA] Currency Code";
+"addCardView.button.cancel" = "[JA] Cancel";
+"addCardView.button.save" = "[JA] Save";
+
+/* CardDetailView */
+"cardDetailView.defaultNavigationTitle" = "[JA] Card Details";
+"cardDetailView.label.cardName" = "[JA] Card Name: ";
+"cardDetailView.label.cardType" = "[JA] Type: ";
+"cardDetailView.label.issuer" = "[JA] Issuer: ";
+"cardDetailView.label.lastFour" = "[JA] Last Four Digits: ";
+"cardDetailView.label.expires" = "[JA] Expires: ";
+"cardDetailView.label.creditLimit" = "[JA] Credit Limit: "; /* Obsolete */
+"cardDetailView.label.statementDay" = "[JA] Statement Day: "; /* Obsolete */
+"cardDetailView.label.paymentDueDay" = "[JA] Payment Due Day: "; /* Obsolete */
+"cardDetailView.label.balance" = "[JA] Balance: "; /* Obsolete */
+"cardDetailView.label.currency" = "[JA] Currency: "; /* Obsolete */
+"cardDetailView.value.notAvailable" = "[JA] N/A";
+"card.detail.annualFee.label" = "[JA] Annual Fee:";
+"card.detail.annualFeeDate.label" = "[JA] Next Fee Date:";
+"card.detail.annualFee.none" = "[JA] No annual fee";
+"card.detail.statementDay.label" = "[JA] Statement Day:";
+"card.detail.paymentDueDay.label" = "[JA] Payment Due Day:";
+"card.detail.gracePeriod.label" = "[JA] Grace Period:";
+"card.detail.dayOfMonth.suffix" = "[JA] day of month";
+"card.detail.days.suffix" = "[JA] days";
+"card.detail.gracePeriod.none" = "[JA] None";
+"card.detail.totalLimit.label" = "[JA] Total Limit:";
+"card.detail.usedLimit.label" = "[JA] Used Credit:";
+"card.detail.availableLimit.label" = "[JA] Available Credit:";
+"card.detail.balance.label" = "[JA] Balance:";
+"card.detail.currency.label" = "[JA] Currency:";
+"card.detail.addTransaction.button" = "[JA] Add Transaction";
+"card.detail.transactions.title" = "[JA] Transactions";
+"card.detail.transactions.none" = "[JA] No transactions yet.";
+
+/* AddTransactionView */
+"addTransaction.navigationTitle" = "[JA] Add Transaction";
+"addTransaction.date.label" = "[JA] Date:";
+"addTransaction.amount.label" = "[JA] Amount:";
+"addTransaction.amount.placeholder" = "[JA] Enter amount";
+"addTransaction.type.label" = "[JA] Type:";
+"transaction.type.expense" = "[JA] Expense";
+"transaction.type.income" = "[JA] Income";
+"addTransaction.category.label" = "[JA] Category:";
+"addTransaction.category.placeholder" = "[JA] e.g., Groceries, Salary";
+"addTransaction.notes.label" = "[JA] Notes:";
+"addTransaction.alert.validationError.title" = "[JA] Validation Error";
+"addTransaction.alert.invalidAmount.message" = "[JA] Please enter a valid amount greater than zero.";
+"addTransaction.alert.emptyCategory.message" = "[JA] Category cannot be empty.";
+"addTransaction.alert.saveError.message" = "[JA] Failed to save transaction:";
+"transaction.category.unknown" = "[JA] Unknown Category";
+
+/* General */
+"currency.format.usd" = "[JA] $%.2f";
+"currency.format.usd.signed" = "[JA] %@$%.2f";
+"common.save" = "[JA] Save";
+"common.cancel" = "[JA] Cancel";
+"common.ok" = "[JA] OK";

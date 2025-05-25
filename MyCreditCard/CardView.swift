@@ -50,19 +50,19 @@ struct CardView: View {
             .frame(height: 150)
             .overlay(
                 VStack(alignment: .leading) {
-                    Text(card.name ?? "Unnamed Card")
+                    Text(card.name ?? NSLocalizedString("cardView.defaultName", comment: "Default card name"))
                         .font(.headline)
                         .foregroundColor(cardForegroundColor)
                     
                     Spacer()
                     
-                    Text("•••• \(card.lastFourDigits ?? "----")")
+                    Text("•••• \(card.lastFourDigits ?? NSLocalizedString("cardView.defaultLastFour", comment: "Default last four digits"))")
                         .font(.title2)
                         .foregroundColor(cardForegroundColor)
                     
                     Spacer()
                     
-                    Text(card.cardType ?? "Unknown Type")
+                    Text(card.cardType ?? NSLocalizedString("cardView.defaultType", comment: "Default card type"))
                         .font(.caption)
                         .foregroundColor(cardForegroundColor)
                 }

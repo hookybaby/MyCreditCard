@@ -7,9 +7,18 @@ struct AddCardView: View {
 
     // Card Type Picker
     enum CardType: String, CaseIterable, Identifiable {
-        case credit = "Credit Card"
-        case debit = "Debit Card"
+        case credit // Raw value will be used for logic, localization key for display
+        case debit
         var id: String { self.rawValue }
+
+        func localizedString() -> LocalizedStringKey {
+            switch self {
+            case .credit:
+                return "addCardView.picker.cardType.option.credit"
+            case .debit:
+                return "addCardView.picker.cardType.option.debit"
+            }
+        }
     }
     @State private var selectedCardType: CardType = .credit
 
@@ -36,60 +45,62 @@ struct AddCardView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Card Details")) {
-                    Picker("Card Type", selection: $selectedCardType) {
+                Section(header: Text("addCardView.section.cardDetails")) {
+                    Picker(Text("addCardView.picker.cardType.label"), selection: $selectedCardType) {
                         ForEach(CardType.allCases) { type in
-                            Text(type.rawValue).tag(type)
+                            Text(type.localizedString()).tag(type)
                         }
                     }
 
-                    TextField("Card Name (e.g., My Visa Gold)", text: $cardName)
-                    TextField("Issuer (e.g., Chase, Bank of America)", text: $issuer)
-                    TextField("Last Four Digits (e.g., 1234)", text: $lastFourDigits)
+                    TextField(LocalizedStringKey("addCardView.textField.cardName.placeholder"), text: $cardName)
+                    TextField(LocalizedStringKey("addCardView.textField.issuer.placeholder"), text: $issuer)
+                    TextField(LocalizedStringKey("addCardView.textField.lastFour.placeholder"), text: $lastFourDigits)
                         .keyboardType(.numberPad)
-                    DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
-                    TextField("Custom Color Hex (optional, e.g., #FFFFFF)", text: $customColorHex)
+                    DatePicker(LocalizedStringKey("addCardView.datePicker.expiryDate.label"), selection: $expiryDate, displayedComponents: .date)
+                    TextField(LocalizedStringKey("addCardView.textField.customColorHex.placeholder"), text: $customColorHex)
                 }
 
                 if selectedCardType == .credit {
-                    Section(header: Text("Credit Card Specifics")) {
-                        TextField("Total Credit Limit", text: $totalCreditLimit)
+                    Section(header: Text("addCardView.section.creditCardSpecifics")) {
+                        TextField(LocalizedStringKey("addCardView.textField.totalCreditLimit.placeholder"), text: $totalCreditLimit)
                             .keyboardType(.decimalPad)
-                        TextField("Statement Day of Month (1-31)", text: $statementDayOfMonth)
+                        TextField(LocalizedStringKey("addCardView.textField.statementDay.placeholder"), text: $statementDayOfMonth)
                             .keyboardType(.numberPad)
-                        TextField("Payment Due Day of Month (1-31)", text: $paymentDueDayOfMonth)
+                        TextField(LocalizedStringKey("addCardView.textField.paymentDueDay.placeholder"), text: $paymentDueDayOfMonth)
                             .keyboardType(.numberPad)
-                        TextField("Grace Period Days (optional)", text: $gracePeriodDays)
+                        TextField(LocalizedStringKey("addCardView.textField.gracePeriod.placeholder"), text: $gracePeriodDays)
                             .keyboardType(.numberPad)
-                        TextField("Annual Fee Amount (optional)", text: $annualFeeAmount)
+                        TextField(LocalizedStringKey("addCardView.textField.annualFeeAmount.placeholder"), text: $annualFeeAmount)
                             .keyboardType(.decimalPad)
                         
                         Toggle(isOn: $hasAnnualFeeDate) {
-                            Text("Set Next Annual Fee Date?")
+                            Text("addCardView.toggle.setAnnualFeeDate.label")
                         }
                         if hasAnnualFeeDate {
-                            DatePicker("Next Annual Fee Date", selection: $nextAnnualFeeDate, displayedComponents: .date)
+                            DatePicker(LocalizedStringKey("addCardView.datePicker.annualFeeDate.label"), selection: $nextAnnualFeeDate, displayedComponents: .date)
                         }
                     }
                 } else if selectedCardType == .debit {
-                    Section(header: Text("Debit Card Specifics")) {
-                        TextField("Current Balance", text: $currentBalance)
+                    Section(header: Text("addCardView.section.debitCardSpecifics")) {
+                        TextField(LocalizedStringKey("addCardView.textField.currentBalance.placeholder"), text: $currentBalance)
                             .keyboardType(.decimalPad)
-                        TextField("Currency Code", text: $currencyCode)
+                        TextField(LocalizedStringKey("addCardView.textField.currencyCode.placeholder"), text: $currencyCode)
                     }
                 }
             }
-            .navigationTitle("Add New Card")
+            .navigationTitle(Text("addCardView.navigationTitle"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
+                    Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                        Text("addCardView.button.cancel")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
+                    Button(action: {
                         saveCard()
                         // Dismissal is handled after saveCard completes or in case of error
+                    }) {
+                        Text("addCardView.button.save")
                     }
                 }
             }

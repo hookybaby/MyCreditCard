@@ -23,13 +23,13 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // My Cards Section
-                    Text("My Cards")
+                    Text("contentView.myCards.header")
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.horizontal)
 
                     if cards.isEmpty {
-                        Text("No cards added yet. Tap the + button to add your first card!")
+                        Text("contentView.myCards.emptyState")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                             .padding(.horizontal)
@@ -45,33 +45,35 @@ struct ContentView: View {
                     }
 
                     // Monthly Snapshot Section (remains static for now)
-                    Text("Monthly Snapshot")
+                    Text("contentView.monthlySnapshot.header")
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.horizontal)
                         .padding(.top)
 
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Credit Card Usage")
+                        Text("contentView.monthlySnapshot.creditUsage.title")
                             .font(.headline)
                         ProgressView(value: creditCardUsage)
                             .progressViewStyle(LinearProgressViewStyle(tint: .accentColor))
                             .frame(height: 20)
-                        Text(String(format: "%.0f%% of $%.2f limit used", creditCardUsage * 100, creditCardLimit))
+                        // For "%.0f%% of $%.2f limit used", use LocalizedStringKey for dynamic content
+                        // This is a simplified approach. For complex cases, consider multiple keys or NumberFormatters.
+                        Text(LocalizedStringKey(String.localizedStringWithFormat(NSLocalizedString("contentView.monthlySnapshot.creditUsage.format", comment: "Format for credit usage: percentage and limit"), creditCardUsage * 100, creditCardLimit)))
                             .font(.caption)
                             .foregroundColor(.secondary)
 
-                        Text("Debit Card Spending")
+                        Text("contentView.monthlySnapshot.debitSpending.title")
                             .font(.headline)
                             .padding(.top)
-                        Text(String(format: "Total this month: $%.2f", debitCardTotalSpending))
+                        Text(LocalizedStringKey(String.localizedStringWithFormat(NSLocalizedString("contentView.monthlySnapshot.debitSpending.totalFormat", comment: "Format for total debit spending"), debitCardTotalSpending)))
                             .font(.subheadline)
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Groceries: $123.45")
+                            Text("contentView.monthlySnapshot.debitSpending.groceriesPlaceholder")
                                 .font(.caption)
-                            Text("Utilities: $88.00")
+                            Text("contentView.monthlySnapshot.debitSpending.utilitiesPlaceholder")
                                 .font(.caption)
-                            Text("Entertainment: $55.20")
+                            Text("contentView.monthlySnapshot.debitSpending.entertainmentPlaceholder")
                                 .font(.caption)
                         }
                         .foregroundColor(.secondary)
@@ -80,7 +82,7 @@ struct ContentView: View {
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("Account Overview")
+            .navigationTitle(Text("contentView.navigationTitle"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -88,6 +90,7 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.title3)
+                            .accessibilityLabel(Text("contentView.buttons.addNewCard.accessibilityLabel"))
                     }
                 }
             }
